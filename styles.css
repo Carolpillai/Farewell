@@ -1,0 +1,1980 @@
+/* ==========================================================================
+   A CHAPTER CALLED JYOTI MA'AM
+   Didone Editorial Scroll-Choreographed Farewell Monograph
+   ========================================================================== */
+
+/* --- Custom Properties & Theme Palette Architecture --- */
+:root {
+  /* Grounds & Papers */
+  --ground-plaster: #F7F7F4;
+  --band-blush-1:   #F3D6DC;
+  --band-blush-2:   #F5D9DF;
+  --paper-1:        #F1F1ED;
+  --paper-2:        #E4E5E0;
+  --paper-3:        #E7E7E4;
+
+  /* Inks & Primaries */
+  --ink:            #070707;
+  --ink-rgb:        7, 7, 7;
+  --ink-light:      #F7F7F4;
+  --ink-light-rgb:  247, 247, 244;
+  --navy:           #071521;
+  --sage:           #B7BAA9;
+  --sage-dark:      #AEB1A0;
+  --grey:           #999999;
+  --grey-rule:      rgba(7, 7, 7, 0.12);
+  --grey-rule-dark: rgba(247, 247, 244, 0.14);
+
+  /* The Dominant Accent (strictly rationed) */
+  --pink:           #EF6F79;
+  --pink-rgb:       239, 111, 121;
+
+  /* Typography: Plus Jakarta Sans (warm, friendly modern body) & Outfit (bold contemporary display) + Dancing Script (cursive) */
+  --font-serif:     'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display:   'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-script:    'Dancing Script', cursive;
+
+  /* Easing */
+  --ease-editorial: cubic-bezier(.16, 1, .3, 1);
+
+  /* Pinned stage progress custom properties (written by rAF scroll engine) */
+  --scroll-percent: 0;
+  --p1: 0;
+  --p2: 0;
+  --p3: 0;
+}
+
+/* --- Global Reset & Zero Radii Specification --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important; /* Specification: Radii 0 */
+  box-shadow: none !important; /* Specification: No shadows */
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--ground-plaster);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+body {
+  width: 100%;
+  overflow-x: clip;
+  background-color: var(--ground-plaster);
+  position: relative;
+  line-height: 1.45;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Hairline rule utility */
+hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--grey-rule);
+  margin: 0;
+}
+
+/* --- Editorial Small Furniture Class --- */
+.furniture {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  line-height: 1.25;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--grey);
+}
+
+.furniture--dark {
+  color: var(--ink) !important;
+}
+
+.furniture--light {
+  color: rgba(247, 247, 244, 0.6) !important;
+}
+
+.furniture--sage {
+  color: var(--sage) !important;
+}
+
+/* Display typography tracking specification (-.03em to -.05em) */
+.display-lead {
+  letter-spacing: -0.035em;
+  font-weight: 400;
+}
+
+/* --- Cursive Script Moments (Dancing Script / Alex Brush) ---
+   Specification: Expressive cursive accents, always in pink #EF6F79, legible, warm & elegant */
+.script-mark {
+  font-family: var(--font-script);
+  color: var(--pink);
+  font-weight: 600;
+  display: inline-block;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  transform-origin: center center;
+}
+
+/* Script Moment 1: Hero Overline - Light pink & straight horizontal line */
+.script-mark--hero {
+  font-size: clamp(1.2rem, 2vw, 1.85rem);
+  transform: none !important;
+  margin-bottom: 0.75rem;
+  color: var(--pink) !important;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* Script Moment 2: Blush Statement Band phrase */
+.script-mark--statement {
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  transform: rotate(1.5deg);
+  margin: 0 0.25em;
+  vertical-align: baseline;
+  font-weight: 600;
+  color: var(--pink);
+}
+
+/* Script Moment 3: CS Memory Band note */
+.script-mark--edition {
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  transform: rotate(-1.2deg);
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  color: var(--pink);
+}
+
+/* --- Pink Accent Allocations (Strictly rationed to specified components) --- */
+.pink-numeral {
+  color: var(--pink);
+  font-family: var(--font-serif);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.pink-price {
+  color: var(--pink);
+  font-family: var(--font-serif);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+/* Exactly ONE Pink Button on the whole page */
+.btn-pink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--pink);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1.15rem 2.8rem;
+  border: 1px solid var(--pink);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.4s var(--ease-editorial), color 0.4s var(--ease-editorial), border-color 0.4s var(--ease-editorial), transform 0.4s var(--ease-editorial);
+}
+
+.btn-pink:hover {
+  background-color: var(--ink);
+  color: var(--ground-plaster);
+  border-color: var(--ink);
+}
+
+.btn-pink:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* --- Progress Rail (Top Pinned) --- */
+.progress-rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.progress-rail__bar {
+  height: 100%;
+  width: calc(var(--scroll-percent, 0) * 100%);
+  background-color: var(--pink); /* Pink progress rail */
+  transition: width 0.05s linear;
+}
+
+/* --- Editorial Top Bar / Navigation --- */
+.editorial-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 1000;
+  background-color: rgba(247, 247, 244, 0.90);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--grey-rule);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.5rem, 4vw, 3.5rem);
+  transition: background-color 0.4s var(--ease-editorial), border-color 0.4s var(--ease-editorial), color 0.4s var(--ease-editorial);
+}
+
+.editorial-nav.nav--dark-mode {
+  background-color: rgba(7, 7, 7, 0.92);
+  border-bottom-color: rgba(247, 247, 244, 0.14);
+  color: var(--ink-light);
+}
+
+.editorial-nav.nav--dark-mode .furniture {
+  color: rgba(247, 247, 244, 0.55);
+}
+
+.editorial-nav.nav--dark-mode .furniture--dark {
+  color: var(--ink-light) !important;
+}
+
+.editorial-nav.nav--dark-mode .nav__link {
+  color: var(--ink-light);
+}
+
+.editorial-nav.nav--dark-mode .nav__link:hover {
+  color: var(--pink);
+}
+
+.nav__brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+}
+
+.nav__logo {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.nav__menu {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.2vw, 2.4rem);
+  list-style: none;
+}
+
+.nav__link {
+  font-family: var(--font-serif);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink);
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 0.4rem 0;
+}
+
+.nav__link:hover {
+  color: var(--pink);
+}
+
+.nav__status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-dot {
+  width: 5px;
+  height: 5px;
+  background-color: var(--pink);
+  display: inline-block;
+}
+
+/* ==========================================================================
+   PINNED STAGES ARCHITECTURE
+   Three tall pinned stages (300svh to 360svh), each a position:sticky inner
+   at top:0, height:100svh, overflow:hidden
+   ========================================================================== */
+.stage {
+  position: relative;
+  width: 100%;
+}
+
+.stage__pin {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* ==========================================================================
+   STAGE 1: MULTIPLY-BLENDED PHOTOGRAPHIC HERO (300svh, Ground #F7F7F4)
+   ========================================================================== */
+.stage--hero {
+  height: 300svh;
+  height: 300dvh;
+  background-color: var(--ground-plaster);
+}
+
+.stage--hero .stage__pin {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: var(--ground-plaster);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end; /* Aligns typography cleanly to the right side */
+  padding: clamp(2rem, 5vw, 4rem) clamp(2rem, 6vw, 6.5rem);
+}
+
+/* No white background/fog over her face */
+.stage--hero .stage__pin::before {
+  display: none !important;
+}
+
+/* Photograph fills the pin, anchored on the left so Jyoti Ma'am's face is completely visible */
+.hero__media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left 45%; /* Keeps Jyoti Ma'am's face and smile prominent on the left */
+  mix-blend-mode: normal;
+  opacity: 1;
+  filter: contrast(1.02) brightness(1.0);
+  transform-origin: left center;
+  transform: scale(calc(1.03 + var(--p1, 0) * 0.05)) translateY(calc(-2% * var(--p1, 0)));
+  will-change: transform;
+}
+
+/* Type block sits to the RIGHT of Jyoti Ma'am, leaving her face 100% clear and unobstructed */
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  max-width: min(580px, 48vw);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transform: translateY(calc(-46px * var(--p1, 0)));
+  opacity: 1; /* Remains fully solid and dark */
+  will-change: transform, opacity;
+  pointer-events: auto;
+  padding: clamp(1.2rem, 2vw, 2.2rem) clamp(1.4rem, 2.4vw, 2.4rem);
+}
+
+/* Very light, delicate white shade behind the text for effortless readability over the dark laptop */
+.hero__content::before {
+  content: '';
+  position: absolute;
+  inset: -1.2rem -1.8rem;
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.78) 50%, rgba(255, 255, 255, 0.35) 80%, transparent 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 55%, rgba(0, 0, 0, 0.7) 75%, transparent 100%);
+  mask-image: radial-gradient(ellipse at 50% 50%, #000 55%, rgba(0, 0, 0, 0.7) 75%, transparent 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Sizing wordmark from character count, aligned gracefully on the right side */
+.hero__wordmark {
+  --chars: 10;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+  color: #000000 !important; /* Pure solid black ink */
+  font-size: min(clamp(2.4rem, 5.8vw, 5.8rem), calc(48vw / (var(--chars) * 0.58)));
+  text-rendering: optimizeLegibility;
+  user-select: none;
+  margin: 0.2rem 0 1rem;
+}
+
+.hero__lede {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.25vw, 1.18rem);
+  font-weight: 450;
+  line-height: 1.65;
+  max-width: 44ch;
+  color: #000000 !important; /* Pure solid dark ink */
+  letter-spacing: -0.01em;
+  margin-top: 0.4rem;
+}
+
+.hero__lede .word {
+  color: #000000 !important;
+  font-weight: 400;
+}
+
+.hero__lede em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Hero base straps completely removed per user request */
+.hero__straps {
+  display: none !important;
+}
+
+/* Scroll indicator removed per user request */
+.hero__scroll-indicator {
+  display: none !important;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 28px;
+  background-color: var(--ink);
+  animation: scrollPulse 2.2s var(--ease-editorial) infinite;
+}
+
+@keyframes scrollPulse {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  50.1% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ==========================================================================
+   BAND 1: BLUSH STATEMENT BAND (#F3D6DC & #F5D9DF)
+   ========================================================================== */
+.band--blush {
+  background-color: var(--band-blush-1);
+  padding: clamp(6rem, 12vw, 10.5rem) clamp(1.5rem, 6vw, 6rem);
+  position: relative;
+  border-top: 1px solid rgba(7, 7, 7, 0.08);
+  border-bottom: 1px solid rgba(7, 7, 7, 0.08);
+}
+
+.statement-block {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.statement__meta {
+  margin-bottom: 2.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statement__quote {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.2vw, 3.7rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: clamp(3.5rem, 6vw, 5.5rem);
+  max-width: 26ch;
+}
+
+.statement__quote em {
+  font-style: italic;
+  font-weight: 400;
+  padding-right: 0.06em;
+}
+
+.statement__columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(2rem, 4.5vw, 4.5rem);
+  border-top: 1px solid rgba(7, 7, 7, 0.16);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.statement__col {
+  display: flex;
+  flex-direction: column;
+}
+
+.col__index {
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.col__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.9rem;
+  color: var(--ink);
+}
+
+.col__desc {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(7, 7, 7, 0.82);
+}
+
+/* ==========================================================================
+   STAGE 2: BOTTOM-UP IMAGE REVEAL (320svh)
+   clip-path: inset(0 0 calc(100% - p*100%) 0)
+   Difference-blended headline + delayed caption at 45%
+   ========================================================================== */
+.stage--strip {
+  height: 320svh;
+  background-color: var(--paper-1);
+}
+
+.stage--strip .stage__pin {
+  background-color: var(--paper-1);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* Second photograph revealed from bottom up */
+.strip__media-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  clip-path: inset(0 0 calc(100% - var(--p2, 0) * 100%) 0);
+  will-change: clip-path;
+}
+
+.strip__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 50%;
+  transform: scale(calc(1.08 - var(--p2, 0) * 0.05));
+  will-change: transform;
+}
+
+/* Headline for Stage 2 — Crisp ink typography with soft feathered shade for flawless readability */
+.strip__headline-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 1140px);
+  text-align: center;
+  z-index: 3;
+  pointer-events: none;
+  opacity: calc(1 - var(--p2, 0) * 1.35);
+  will-change: opacity;
+  padding: clamp(1.2rem, 3.2vw, 2.6rem) clamp(1rem, 2.8vw, 2.4rem);
+  background: radial-gradient(ellipse at center, rgba(247, 247, 244, 0.94) 0%, rgba(247, 247, 244, 0.82) 60%, rgba(247, 247, 244, 0) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 24px;
+}
+
+.strip__headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5.4vw, 4.8rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  mix-blend-mode: normal;
+  white-space: normal;
+}
+
+.strip__headline em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  color: #C94A53;
+  padding-right: 0.06em;
+  display: inline-block;
+}
+
+/* Caption removed per user request to keep event photograph clean and unobstructed */
+.strip__caption {
+  display: none !important;
+}
+
+/* Top-right index on strip pin */
+.strip__pin-meta {
+  position: absolute;
+  top: clamp(2rem, 4vw, 3.5rem);
+  right: clamp(1.5rem, 4vw, 3.5rem);
+  z-index: 4;
+  background: rgba(247, 247, 244, 0.90);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 0.6rem 1.1rem;
+}
+
+/* ==========================================================================
+   STAGE 3: COMPOSITION ROWS ON NEAR-BLACK (360svh)
+   Ground #070707, two columns.
+   Left: 4 composition rows light cumulatively as floor(p * 4) advances.
+   Right: product still in 4/5 frame scaling 1.08 -> 1.00 with solid pink pill label.
+   ========================================================================== */
+.stage--composition {
+  height: 360svh;
+  background-color: var(--ink);
+  color: var(--ink-light);
+}
+
+.stage--composition .stage__pin {
+  background-color: var(--ink);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: calc(60px + clamp(2rem, 4vw, 4rem));
+  padding-bottom: clamp(2rem, 3.5vw, 3.5rem);
+  padding-left: clamp(2rem, 5vw, 5rem);
+  padding-right: clamp(2rem, 5vw, 5rem);
+}
+
+.composition__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2.5rem, 5vw, 5.5rem);
+  width: 100%;
+  max-width: 1260px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+/* Left column: Italic-accented headline + 4 ruled rows */
+.composition__left {
+  display: flex;
+  flex-direction: column;
+}
+
+.composition__header {
+  margin-bottom: clamp(1.4rem, 2.5vw, 2.2rem);
+}
+
+.composition__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--ink-light);
+  margin-top: 0.6rem;
+}
+
+.composition__title em {
+  font-style: italic;
+  font-weight: 450;
+  padding-right: 0.08em;
+}
+
+/* Four ruled rows at 0.28 opacity, lighting cumulatively */
+.composition__rows {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--grey-rule-dark);
+}
+
+.comp-row {
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  align-items: baseline;
+  gap: 1.2rem;
+  padding: clamp(0.75rem, 1.2vw, 1.1rem) 0;
+  border-bottom: 1px solid var(--grey-rule-dark);
+  opacity: 0.28; /* Specification */
+  transition: opacity 0.55s var(--ease-editorial), border-color 0.55s var(--ease-editorial), transform 0.55s var(--ease-editorial);
+  will-change: opacity;
+}
+
+/* Cumulative lighting states */
+.comp-row.is-lit {
+  opacity: 1 !important;
+  border-bottom-color: rgba(247, 247, 244, 0.42);
+}
+
+.comp-row.is-active {
+  transform: translateX(6px);
+}
+
+.comp-row__num {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--pink); /* Pink index numeral */
+  font-variant-numeric: tabular-nums;
+}
+
+.comp-row__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink-light);
+}
+
+.comp-row__tier {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--sage);
+  margin-top: 0.2rem;
+}
+
+.comp-row__duration {
+  font-family: var(--font-serif);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(247, 247, 244, 0.65);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Right column: product still in 4/5 frame scaling 1.08 -> 1.00 */
+.composition__right {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.product-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5; /* Specification */
+  overflow: hidden;
+  background-color: #0d0d0d;
+  border: 1px solid rgba(247, 247, 244, 0.12);
+}
+
+.product-frame__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  transform: scale(calc(1.08 - var(--p3, 0) * 0.08));
+  will-change: transform;
+}
+
+/* Pill label removed per user request */
+.product-frame__pill {
+  display: none !important;
+}
+
+/* ==========================================================================
+   BAND 2: PRICE & TIMELINE TABLE (Paper Band #E4E5E0 / #F1F1ED)
+   Collapsing to two columns under 700px
+   Pink figures, italic descriptions
+   ========================================================================== */
+.band--pricing {
+  background-color: var(--paper-2);
+  padding: clamp(6rem, 11vw, 10rem) clamp(1.5rem, 6vw, 6rem);
+  border-top: 1px solid var(--grey-rule);
+  border-bottom: 1px solid var(--grey-rule);
+}
+
+.pricing-block {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pricing__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid rgba(7, 7, 7, 0.2);
+  padding-bottom: 1.8rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.pricing__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+.pricing__title em {
+  font-style: italic;
+  padding-right: 0.06em;
+}
+
+/* Price table */
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.price-table__row {
+  border-bottom: 1px solid rgba(7, 7, 7, 0.16);
+  padding: 2.2rem 0;
+  display: grid;
+  grid-template-columns: 2.2fr 3.2fr 1.2fr 1.4fr;
+  align-items: center;
+  gap: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.price-table__row:hover {
+  background-color: rgba(247, 247, 244, 0.4);
+}
+
+.price-table__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.price-table__vintage {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--sage-dark);
+  margin-top: 0.3rem;
+}
+
+.price-table__desc {
+  font-family: var(--font-serif);
+  font-style: italic; /* Specification: italic descriptions */
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(7, 7, 7, 0.78);
+}
+
+.price-table__figure {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+  font-weight: 500;
+  color: var(--pink); /* Specification: pink figures */
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  text-align: right;
+}
+
+.price-table__action {
+  text-align: right;
+}
+
+.price-table__status {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink);
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(7, 7, 7, 0.25);
+}
+
+/* Pricing footer with Script moment 3 & The ONE Pink button */
+.pricing__cta-wrap {
+  margin-top: 4.5rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(7, 7, 7, 0.18);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.pricing__guarantee {
+  max-width: 44ch;
+}
+
+.pricing__guarantee p {
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: rgba(7, 7, 7, 0.8);
+}
+
+/* ==========================================================================
+   BAND 3: BLUSH FAQ BAND (#F5D9DF & #F3D6DC)
+   Native details rows with a CSS-only plus
+   ========================================================================== */
+.band--faq {
+  background-color: var(--band-blush-2);
+  padding: clamp(6rem, 11vw, 10rem) clamp(1.5rem, 6vw, 6rem);
+  border-top: 1px solid rgba(7, 7, 7, 0.08);
+  border-bottom: 1px solid rgba(7, 7, 7, 0.08);
+}
+
+.faq-block {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.faq__header {
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
+  text-align: left;
+}
+
+.faq__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-top: 0.8rem;
+}
+
+.faq__title em {
+  font-style: italic;
+  padding-right: 0.06em;
+}
+
+.faq__list {
+  border-top: 1px solid rgba(7, 7, 7, 0.18);
+}
+
+/* Native <details> styling */
+.faq__item {
+  border-bottom: 1px solid rgba(7, 7, 7, 0.18);
+}
+
+.faq__summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.8rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.faq__summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq__summary:hover {
+  color: var(--pink);
+}
+
+.faq__summary:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+/* CSS-only plus icon that transitions on open */
+.faq__icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.faq__icon::before,
+.faq__icon::after {
+  content: '';
+  position: absolute;
+  background-color: var(--ink);
+  transition: transform 0.4s var(--ease-editorial), background-color 0.3s ease;
+}
+
+/* Horizontal bar */
+.faq__icon::before {
+  top: 7px;
+  left: 0;
+  width: 16px;
+  height: 1.5px;
+}
+
+/* Vertical bar */
+.faq__icon::after {
+  top: 0;
+  left: 7px;
+  width: 1.5px;
+  height: 16px;
+}
+
+.faq__item[open] .faq__icon::after {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+.faq__item[open] .faq__summary {
+  color: var(--ink);
+}
+
+.faq__content {
+  padding: 0 0 2rem 0;
+  max-width: 68ch;
+}
+
+.faq__content p {
+  font-family: var(--font-serif);
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: rgba(7, 7, 7, 0.85);
+}
+
+/* ==========================================================================
+   EDITORIAL COLOPHON & FOOTER
+   ========================================================================== */
+.editorial-footer {
+  background-color: var(--ground-plaster);
+  padding: clamp(5rem, 9vw, 8rem) clamp(1.5rem, 6vw, 6rem) 3rem;
+  border-top: 1px solid var(--grey-rule);
+}
+
+.footer__grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--grey-rule);
+}
+
+.footer__brand-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.8rem;
+}
+
+.footer__brand-p {
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(7, 7, 7, 0.72);
+  max-width: 38ch;
+}
+
+.footer__col-title {
+  margin-bottom: 1.2rem;
+}
+
+.footer__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer__item a {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  color: rgba(7, 7, 7, 0.8);
+  transition: color 0.3s ease;
+}
+
+.footer__item a:hover {
+  color: var(--pink);
+}
+
+.footer__bottom {
+  max-width: 1240px;
+  margin: 2.5rem auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+/* ==========================================================================
+   PER-WORD SPANS & ATOM REVEAL ANIMATIONS
+   "Split every headline, lede, statement and caption into per-word spans
+    rising 0.4em on a 38ms stagger, and give every column, table row, table
+    cell, composition row, FAQ summary, hero strap, button, nav link and
+    footer line its own data-rev attribute with a --d delay of 40 to 90ms.
+    Reveal with one IntersectionObserver at threshold 0.12."
+   ========================================================================== */
+
+/* Word wrap inline block — overflow visible so italics and glyph overhangs are never clipped */
+.word-wrap {
+  display: inline-block;
+  overflow: visible;
+  vertical-align: baseline;
+  white-space: nowrap;
+  padding: 0 0.04em;
+}
+
+.word {
+  display: inline-block;
+  transform: translateY(0.4em);
+  opacity: 0;
+  transition: transform 0.82s var(--ease-editorial), opacity 0.82s var(--ease-editorial);
+  transition-delay: var(--w-delay, 0ms);
+  will-change: transform, opacity;
+  overflow: visible;
+}
+
+.nowrap {
+  white-space: nowrap !important;
+  display: inline-block;
+}
+
+/* When the parent container is triggered by IntersectionObserver */
+.is-revealed .word,
+.revealed .word {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Data-rev atomic elements */
+[data-rev] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.88s var(--ease-editorial), transform 0.88s var(--ease-editorial);
+  transition-delay: var(--d, 0ms);
+  will-change: opacity, transform;
+}
+
+[data-rev].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   INTERACTIVE FAREWELL LETTER MODAL
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(7, 7, 7, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s var(--ease-editorial);
+}
+
+.modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-sheet {
+  background-color: var(--ground-plaster);
+  width: 100%;
+  max-width: 680px;
+  border: 1px solid var(--ink);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  position: relative;
+  transform: translateY(24px);
+  transition: transform 0.45s var(--ease-editorial);
+}
+
+.modal-backdrop.is-open .modal-sheet {
+  transform: translateY(0);
+}
+
+.modal__close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(7, 7, 7, 0.2);
+}
+
+.modal__close:hover {
+  background-color: var(--ink);
+  color: var(--ground-plaster);
+}
+
+.modal__title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-top: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Custom Scrollbar inside modal */
+.modal-sheet::-webkit-scrollbar {
+  width: 4px;
+}
+.modal-sheet::-webkit-scrollbar-thumb {
+  background-color: rgba(7, 7, 7, 0.3);
+}
+
+/* ==========================================================================
+   RESPONSIVENESS & BREAKPOINTS
+   "collapsing to two columns under 700px"
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .composition__grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .composition__right {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  .product-frame {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* ==========================================================================
+   MOBILE PHONE VIEWPORT OPTIMIZATIONS (< 768px)
+   Phone-centered alignment, zero overflow, fully fitted stages
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Prevent any horizontal overflow without breaking sticky scroll */
+  html, body {
+    overflow-x: clip !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .stage, .band, .editorial-footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: clip !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Editorial Nav - Compact, touch-friendly, centered brand & menu */
+  .editorial-nav {
+    height: 52px;
+    padding: 0 0.8rem;
+    overflow: hidden;
+    width: 100% !important;
+    justify-content: space-between;
+  }
+
+  .nav__status {
+    display: none !important;
+  }
+
+  .nav__brand .furniture {
+    display: none !important;
+  }
+
+  .nav__logo {
+    font-size: 0.98rem;
+    letter-spacing: -0.02em;
+  }
+
+  .nav__menu {
+    gap: 0.85rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.2rem 0;
+    max-width: 60vw;
+  }
+
+  .nav__menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav__link {
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+  }
+
+  /* Stage 1: Hero Phone Stability — Centered layout & light diffused shade */
+  .stage--hero .stage__pin {
+    padding: calc(52px + 1rem) 1rem 2.2rem;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero__image {
+    object-position: center 20% !important;
+  }
+
+  .hero__content {
+    max-width: 94vw;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.86) 60%, rgba(255, 255, 255, 0.4) 85%, transparent 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1.3rem 1.1rem 1.1rem;
+  }
+
+  .hero__content::before {
+    display: none !important;
+  }
+
+  .hero__wordmark {
+    font-size: clamp(2rem, 9.5vw, 3.2rem) !important;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+    margin: 0.2rem auto 0.6rem;
+    line-height: 1.0;
+    text-align: center;
+  }
+
+  .script-mark--hero {
+    font-size: clamp(1rem, 3.8vw, 1.35rem) !important;
+    margin-bottom: 0.4rem;
+    transform: none !important;
+    color: var(--pink) !important;
+    text-align: center;
+  }
+
+  .hero__lede {
+    font-size: 0.92rem !important;
+    line-height: 1.6;
+    max-width: 88vw;
+    margin: 0.3rem auto 0;
+    text-align: center;
+  }
+
+  /* Band 1: Blush Statement Band — Centered */
+  .band--blush {
+    padding: 4rem 1.25rem;
+    text-align: center;
+  }
+
+  .statement-block {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .statement__meta {
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 1.8rem;
+  }
+
+  .statement__quote {
+    font-size: clamp(1.35rem, 5.5vw, 1.95rem);
+    line-height: 1.35;
+    text-align: center;
+    margin: 0 auto clamp(2rem, 5vw, 3.5rem);
+    max-width: 100%;
+  }
+
+  .statement__columns {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .col__index {
+    justify-content: center;
+    margin-bottom: 0.8rem;
+  }
+
+  .col__title {
+    text-align: center;
+  }
+
+  .col__desc {
+    text-align: center;
+    max-width: 44ch;
+    margin: 0 auto;
+  }
+
+  /* Stage 2: Reveal Strip Stage — Centered & Fully Legible */
+  .strip__headline-wrap {
+    width: 92vw;
+    padding: 1.2rem 0.8rem;
+  }
+
+  .strip__headline {
+    font-size: clamp(1.75rem, 6.8vw, 2.7rem) !important;
+    line-height: 1.18;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    color: var(--ink) !important;
+    mix-blend-mode: normal !important;
+  }
+
+  .strip__pin-meta {
+    top: 1rem;
+    right: 1rem;
+    font-size: 9px;
+    padding: 0.4rem 0.8rem;
+  }
+
+  /* Stage 3: Composition Rows on Near-Black — Perfectly Scaled & Centered */
+  .stage--composition {
+    height: 300svh;
+  }
+
+  .stage--composition .stage__pin {
+    padding: calc(52px + 0.6rem) 1rem 1rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .composition__grid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    text-align: center;
+    align-items: center;
+  }
+
+  .composition__left {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .composition__header {
+    margin-bottom: 0.5rem;
+    text-align: center;
+    align-items: center;
+  }
+
+  .composition__title {
+    font-size: clamp(1.2rem, 4.2vw, 1.6rem);
+    line-height: 1.25;
+    margin-top: 0.2rem;
+    text-align: center;
+  }
+
+  .composition__rows {
+    width: 100%;
+    border-top: 1px solid var(--grey-rule-dark);
+  }
+
+  .comp-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 0.45rem 0.2rem;
+    border-bottom: 1px solid var(--grey-rule-dark);
+    text-align: left;
+  }
+
+  .comp-row__num {
+    font-size: 0.9rem;
+    min-width: 1.8rem;
+  }
+
+  .comp-row__details {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .comp-row__name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .comp-row__tier {
+    font-size: 0.78rem;
+    line-height: 1.3;
+    color: rgba(247, 247, 244, 0.7);
+    display: block;
+    white-space: normal;
+  }
+
+  .comp-row__duration {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    align-self: center;
+    color: var(--sage);
+  }
+
+  .composition__right {
+    width: 100%;
+    max-width: 240px;
+    margin: 0.4rem auto 0;
+    text-align: center;
+  }
+
+  .product-frame {
+    aspect-ratio: 16 / 9;
+    max-height: 85px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .product-frame__image {
+    object-position: center center;
+  }
+
+  /* Band 2: Price & Timeline Table — Centered Editorial Cards */
+  .band--pricing {
+    padding: 4rem 1.25rem;
+    text-align: center;
+  }
+
+  .pricing-block {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .pricing__header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .pricing__title {
+    font-size: clamp(1.5rem, 5.5vw, 2.1rem);
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .pricing__title em {
+    display: block;
+    margin-top: 0.2rem;
+  }
+
+  .price-table {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .price-table__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 1.6rem 0.8rem;
+    border-bottom: 1px solid rgba(7, 7, 7, 0.14);
+  }
+
+  .price-table__name {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .price-table__vintage {
+    text-align: center;
+    margin-top: 0.25rem;
+  }
+
+  .price-table__desc {
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    max-width: 38ch;
+    margin: 0.2rem auto;
+  }
+
+  .price-table__edition {
+    text-align: center;
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  .price-table__action {
+    text-align: center;
+  }
+
+  .pricing__cta-wrap {
+    text-align: center;
+    align-items: center;
+    margin-top: 2.2rem;
+  }
+
+  .pricing__guarantee {
+    text-align: center;
+    align-items: center;
+    margin: 0 auto 1.5rem;
+  }
+
+  .pricing__guarantee p {
+    text-align: center;
+    max-width: 38ch;
+    margin: 0 auto;
+  }
+
+  /* Band 3: FAQ Band — Centered */
+  .band--faq {
+    padding: 4rem 1.25rem;
+    text-align: center;
+  }
+
+  .faq-block {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .faq__header {
+    text-align: center;
+    align-items: center;
+    margin-bottom: 1.8rem;
+  }
+
+  .faq__title {
+    font-size: clamp(1.6rem, 5.5vw, 2.3rem);
+    text-align: center;
+  }
+
+  .faq__list {
+    text-align: left;
+    width: 100%;
+  }
+
+  .faq__summary {
+    font-size: 1.05rem;
+    padding: 1.2rem 0;
+  }
+
+  .faq__body p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  /* Final Emotional Farewell Quote Block — Centered */
+  .farewell-quote-block {
+    text-align: center;
+    margin: 0 auto 3rem !important;
+  }
+
+  .farewell-quote-block h2 {
+    text-align: center;
+    font-size: clamp(1.6rem, 5.5vw, 2.2rem) !important;
+  }
+
+  .farewell-quote-block p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .farewell-quote-block blockquote {
+    text-align: center !important;
+    border-left: none !important;
+    border-top: 2px solid var(--pink) !important;
+    border-bottom: 2px solid var(--pink) !important;
+    padding: 1.4rem 1rem !important;
+    margin: 1.8rem auto !important;
+    max-width: 44ch;
+  }
+
+  /* Footer — Centered */
+  .farewell-footer {
+    padding: 3.5rem 1.25rem 2.5rem;
+    text-align: center;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .footer__brand-title {
+    text-align: center;
+  }
+
+  .footer__brand-p {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .footer__col-title {
+    text-align: center;
+  }
+
+  .footer__list {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Farewell Letter Modal on Mobile */
+  .modal-backdrop {
+    padding: 1rem;
+  }
+
+  .modal-sheet {
+    max-height: 88vh;
+    max-height: 88dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 1.8rem 1.2rem;
+    width: 95vw;
+  }
+
+  .modal__title {
+    font-size: 1.45rem;
+    text-align: center;
+  }
+
+  .modal__body p {
+    font-size: 0.92rem;
+  }
+}
+
+/* ==========================================================================
+   PHONE ROTATION SUGGESTION BANNER
+   Appears smoothly on portrait mobile view asking user to rotate to landscape
+   ========================================================================== */
+.rotate-banner {
+  display: none;
+  position: fixed;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: calc(100% - 2rem);
+  max-width: 440px;
+  pointer-events: auto;
+  animation: slideUpRotatePrompt 0.5s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+@keyframes slideUpRotatePrompt {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.rotate-banner.is-dismissed {
+  display: none !important;
+}
+
+/* Shown on narrow screens in portrait mode */
+@media (max-width: 768px) and (orientation: portrait) {
+  .rotate-banner:not(.is-dismissed) {
+    display: block;
+  }
+}
+
+.rotate-banner__inner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(7, 7, 7, 0.94);
+  color: #F7F7F4;
+  padding: 0.75rem 1rem;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(239, 111, 121, 0.5);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+.rotate-banner__icon {
+  flex-shrink: 0;
+  color: var(--pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rotateIconPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes rotateIconPulse {
+  0%, 100% { transform: rotate(0deg); }
+  35% { transform: rotate(-25deg); }
+  70% { transform: rotate(0deg); }
+}
+
+.rotate-banner__text {
+  flex: 1;
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  line-height: 1.35;
+  color: rgba(247, 247, 244, 0.95);
+}
+
+.rotate-banner__text strong {
+  color: var(--pink);
+  font-weight: 600;
+}
+
+.rotate-banner__close {
+  flex-shrink: 0;
+  background: transparent;
+  border: none !important;
+  color: rgba(247, 247, 244, 0.7);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  transition: color 0.2s ease;
+}
+
+.rotate-banner__close:hover,
+.rotate-banner__close:active {
+  color: #FFFFFF;
+}
+
+/* Automatically hide in landscape mode */
+@media (orientation: landscape) {
+  .rotate-banner {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: PREFERS-REDUCED-MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .strip__media-wrapper {
+    clip-path: none !important;
+  }
+
+  .strip__headline {
+    mix-blend-mode: normal !important;
+    color: var(--ink) !important;
+    opacity: 1 !important;
+  }
+
+  .strip__caption {
+    opacity: 1 !important;
+  }
+
+  .hero__content {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero__image,
+  .strip__image,
+  .product-frame__img {
+    transform: none !important;
+  }
+
+  .word {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  [data-rev] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .comp-row {
+    opacity: 1 !important;
+  }
+}
